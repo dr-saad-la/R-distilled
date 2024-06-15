@@ -1,0 +1,9 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: chap_00/setup
+- file: chap_00/1-installing-windows-tools
+- file: chap_00/2-installing-R-on-windows

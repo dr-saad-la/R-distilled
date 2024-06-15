@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="208.53168mm"
+   height="47.106152mm"
+   viewBox="0 0 208.53168 47.106152"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-1.4995282,-1.3915288)">
+    <text
+       xml:space="preserve"
+       style="font-size:51.6956px;font-family:AppleMyungjo;-inkscape-font-specification:'AppleMyungjo, Normal';text-align:center;text-anchor:middle;fill:#2b1100;fill-opacity:0.865285;stroke:#ff0000;stroke-width:0.565686;stroke-linecap:square;stroke-dasharray:2.26276, 0.565686"
+       x="127.88934"
+       y="39.160057"
+       id="text1"
+       transform="scale(0.82684393,1.2094181)"><tspan
+         id="tspan1"
+         style="fill:#2b1100;stroke-width:0.565686"
+         x="127.88934"
+         y="39.160057">R-Distilled</tspan></text>
+  </g>
+</svg>

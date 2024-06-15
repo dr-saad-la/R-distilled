@@ -1,0 +1,762 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; R Programming Language Distilled</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_00/3-Installing Jupyter Notebook';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="R Programming Language Distilled - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="R Programming Language Distilled - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">R Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-installing-windows-tools.html">Installing Windows Useful Tools and Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-installing-R-on-windows.html">Introduction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap_00/3-Installing Jupyter Notebook.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_00/3-Installing Jupyter Notebook.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python-prerequisite-for-installing-jupyter">Installing Python:  Prerequisite for Installing Jupyter</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-classic-jupyter-notebook">Installing Classic Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-jupyter-notebook">Launching <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-jupyterlab">Installing JupyterLab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-jupyter-lab">Launching Jupyter Lab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note">Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-r-kernel">Installing the R Kernel</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-the-kernel-in-the-current-r-installation">Registering the kernel in the current R installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-r-versions-optional-and-advanced">Installing <code class="docutils literal notranslate"><span class="pre">R</span></code> Versions  (optional and Advanced)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#something-extra">Something Extra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-shortcuts">Installing shortcuts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div style="background-color:#F5F5DC; line-height:1.5; text-align:center;border:2px solid black;">
+    <div style="color:blue; font-size:24pt; font-weight:700;">Installing Classic Jupyter Notebook, Jupyter Lab and IRkernel</div>
+</div><section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>In this section, we will install Python so we can install Jupyter notebook, it is not required for <code class="docutils literal notranslate"><span class="pre">R</span></code>, it is just for installing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>.</p></li>
+<li><p>If you already have Python, you can skip this section, if you are not sure, you can check Python by starting the command prompt and type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code></p></li>
+<li><p>If you by any chance have <code class="docutils literal notranslate"><span class="pre">anaconda</span></code> distribution installed, you already have the necessary tools and you can move to the next section of installing <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code>.</p></li>
+</ul>
+</section>
+<section id="installing-python-prerequisite-for-installing-jupyter">
+<h1>Installing Python:  Prerequisite for Installing Jupyter<a class="headerlink" href="#installing-python-prerequisite-for-installing-jupyter" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Python is a requirement for installing the <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code>. After installing Python, the Python package manager <code class="docutils literal notranslate"><span class="pre">pip</span></code> will be installed automatically, which is the tool we use to install  <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code> or <code class="docutils literal notranslate"><span class="pre">Jupyterlab</span></code>.</p></li>
+<li><p>The Python version required differs between Jupyter Notebook releases (e.g. Python 3.6+ for Notebook v6.3, and Python 3.7+ for Notebook v7) . <a class="reference external" href="https://docs.jupyter.org/en/latest/install/notebook-classic.html#prerequisite-python">source</a></p></li>
+</ul>
+<section id="installing-classic-jupyter-notebook">
+<h2>Installing Classic Jupyter Notebook<a class="headerlink" href="#installing-classic-jupyter-notebook" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>First let us ensure that you have <code class="docutils literal notranslate"><span class="pre">pip</span></code> Python package manager by running:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>--version
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If it does not produce an error, it means your machine is set up correctly, if not, you have to follow these steps to add Python to the path (the path is the location where the system searches for executable files):</p></li>
+<li><p><strong>Adding Python to the path</strong>:</p>
+<ul>
+<li><p>You can do this either from the command prompt as follows:</p>
+<ul>
+<li><p>Open command prompt in administrator mode (press <code class="docutils literal notranslate"><span class="pre">windows</span> <span class="pre">key</span> <span class="pre">+</span> <span class="pre">R</span></code>), then type <code class="docutils literal notranslate"><span class="pre">cmd</span></code> in the Run dialog, then press <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">Enter</span></code></p></li>
+<li><p>Then just type this command <code class="docutils literal notranslate"><span class="pre">setx</span> <span class="pre">/m</span> <span class="pre">&quot;python-path:%PATH%&quot;</span></code></p></li>
+<li><p>replace <code class="docutils literal notranslate"><span class="pre">python-path</span></code> with the location of Python on your system</p></li>
+<li><p>Close up the command prompt and open it again</p></li>
+<li><p>type <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code></p></li>
+<li><p>If returned Python version, then Python has been added to the path correctly.</p></li>
+</ul>
+</li>
+<li><p>Adding Python to the path using graphical user interface:</p>
+<ul>
+<li><p>Open the run dialog (this is the easiest way)</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sysdm.cpl</span></code> in the Run dialog and press enter</p></li>
+<li><p>The System properties will pop up</p></li>
+<li><p>Go advanced tab</p></li>
+<li><p>Press on Environment variables</p></li>
+<li><p>Go to System variable and find <code class="docutils literal notranslate"><span class="pre">path</span></code> and press on edit (This will add Python system wide)</p></li>
+<li><p>Press on <code class="docutils literal notranslate"><span class="pre">new</span></code></p></li>
+<li><p>Add the location of the executable Python, this location looks like this <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python3.x\scripts</span></code></p></li>
+<li><p>Press ok</p></li>
+<li><p>You can add Python to this specific user the same way you did with system variable from <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">variables</span></code></p></li>
+<li><p>When you finish, press ok, the ok from the environment variables.</p></li>
+<li><p>Test that Python has been added to the path from the command prompt <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>If you followed the steps above of installing Python and making sure it is recognized from the command prompt, then you are good to go, otherwise you should go up the steps illustrated above.</p></li>
+<li><p>We can install the classic <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code> by running the following command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter<span class="w"> </span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>notebook
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can test that jupyter is installed by running the next command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>--version
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This command will show information <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> version installed with extra information that it will be clear in a later stage.</p></li>
+</ul>
+</section>
+<section id="launching-jupyter-notebook">
+<h2>Launching <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code><a class="headerlink" href="#launching-jupyter-notebook" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>My preferred way to start jupyter notebook is from the command prompt, however, you can start it however you like. The reason I start jupyter from the CLI is that I can change the path the desired directory first then start this application from there instead of starting it from the default location of CLI.</p></li>
+<li><p>Here are the steps of launching Jupyter:</p>
+<ol class="arabic simple">
+<li><p>Open the command prompt (or any command line you have)</p></li>
+<li><p>Change the directory to your preferred working directory using this command <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;path-to-your-working-directory&quot;</span></code></p></li>
+<li><p>Launch Jupyter by typing <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code></p></li>
+<li><p>Jupyter will open in your default browser.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="installing-jupyterlab">
+<h2>Installing JupyterLab<a class="headerlink" href="#installing-jupyterlab" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code> is the newer version of notebook, it is recommended to use this version. You can install it similarly to classic notebook by running the next command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Test that jupyterlab is setup correctly using this command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab<span class="w"> </span>--version
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This will show jupyter lab installed version.</p></li>
+</ul>
+</section>
+<section id="launching-jupyter-lab">
+<h2>Launching Jupyter Lab<a class="headerlink" href="#launching-jupyter-lab" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We can launch Jupyter lab the same way we explained above, you can change the working directory first then launch jupyter lab from there this way:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Note that you can pass the working directory as an argument to this command, however, I try to follow the easiest way, the advanced way is left for advanced courses about Jupyter lab or notebook.</p></li>
+</ul>
+</section>
+<section id="note">
+<h2>Note<a class="headerlink" href="#note" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>We still missing one step, we cannot run R from jupyter notebook or lab yet. This is explained in the next section.</p>
+</div></blockquote>
+</section>
+<section id="installing-the-r-kernel">
+<h2>Installing the R Kernel<a class="headerlink" href="#installing-the-r-kernel" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In this section, we need to install the <strong>R kernel</strong>, which is the core of R programming language, and without it we cannot run R code from Jupyter.</p></li>
+<li><p>A word of caution, We can do this from <code class="docutils literal notranslate"><span class="pre">RGui</span></code> Application, but sometimes it does not succeed, thus, we need to start <code class="docutils literal notranslate"><span class="pre">R</span></code> from the command prompt by typing <code class="docutils literal notranslate"><span class="pre">R</span></code>. If it does not start R, it means <code class="docutils literal notranslate"><span class="pre">R</span></code> is not the in the path, please go back to first lesson and add follow the steps to add it to the path.</p></li>
+<li><p>Launch <code class="docutils literal notranslate"><span class="pre">R</span></code> from the command prompt and we need to install a package from there. This package is named <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> (please watch out the spelling, because it matters a great deal, if it does not work, check the spelling first)</p></li>
+<li><p>To install the R Kernel you can run the following command from the R Console. <a class="reference external" href="https://github.com/IRkernel/IRkernel">source</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>install.packages<span class="o">(</span><span class="s1">&#39;IRkernel&#39;</span><span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>We still lack one step, I will train to explain things to you in more details, do not take my word for it, start thinking as a programmer from here on, yes you are programmer, I mean it.</p></li>
+</ul>
+</section>
+</section>
+<section id="registering-the-kernel-in-the-current-r-installation">
+<h1>Registering the kernel in the current R installation<a class="headerlink" href="#registering-the-kernel-in-the-current-r-installation" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>After installing the <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code>, we need to add to <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> which can be achieved by installing a kernel spec using <code class="docutils literal notranslate"><span class="pre">installspec()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">IRkenel</span></code> package. This allows Jupyter to recognize the kernel and work with it interactively:</p></li>
+<li><p>As a programmer, or a future programmer, you don’t want to take everything for granted. If you are new to R at all (and I suppose you are), what we are going to do here will not be clear to you, but this concerns the installation on the system more than the language.</p></li>
+<li><p>Here will try to understand what the <code class="docutils literal notranslate"><span class="pre">installspec()</span></code> does when calling it, and can customize our <code class="docutils literal notranslate"><span class="pre">Rkernel</span></code> or accept the defaults if you are happy with them.</p></li>
+<li><p>In the next piece of code, we will load the <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> to the working environment, then call another function <code class="docutils literal notranslate"><span class="pre">args()</span></code> to display the arguments of the <code class="docutils literal notranslate"><span class="pre">installspec()</span></code> function. You can alternatively run the <code class="docutils literal notranslate"><span class="pre">help(installspec()</span></code> for more information. However, here I will explain that to you.</p></li>
+<li><p>Getting the help of what you are doing:</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;IRkernel&quot;</span><span class="p">)</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nf">args</span><span class="p">(</span><span class="n">installspec</span><span class="p">)</span>
+<span class="nf">function </span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ir&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">displayname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rprofile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">sys_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">getOption</span><span class="p">(</span><span class="s">&quot;verbose&quot;</span><span class="p">))</span><span class="w"> </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">=</span> <span class="pre">NULL</span></code>: to install the kernel for the current user only. You can set this argument to <code class="docutils literal notranslate"><span class="pre">user=FALSE</span></code> to install the kernel system wide.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">&quot;ir&quot;</span></code>: This indicates the name of the kernel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">displayname</span> <span class="pre">=</span> <span class="pre">&quot;R&quot;</span></code>: This the name which is displayed in the notebook (default: “R”)).</p></li>
+<li><p>Now it is time to make Jupyter aware of R kernel, I will accept the default except for the <code class="docutils literal notranslate"><span class="pre">displayname</span></code> which I will add The version (This makes me aware of what version I am working with, also it will be help debug some errors when they occur)</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">installspec</span><span class="p">(</span><span class="n">displayname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R 4.3&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># R 4.3 is the latest version of writing this lesson</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You will see some programmers using this in one step by using what is called <code class="docutils literal notranslate"><span class="pre">namespace</span></code>, which means we call <code class="docutils literal notranslate"><span class="pre">installspec()</span></code> function directly from where it locates without the need to load the <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> package. I did it in two steps for the purpose of education, you can do it this way as well:</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">IRkernel</span><span class="o">::</span><span class="nf">installspec</span><span class="p">(</span><span class="n">displayname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R 4.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id1">
+<h2>Note<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>By not setting different arguments, multiple calls will overwrite the kernel with a kernel spec pointing to the last R interpreter you called that commands from.</p>
+</div></blockquote>
+</section>
+<section id="installing-r-versions-optional-and-advanced">
+<h2>Installing <code class="docutils literal notranslate"><span class="pre">R</span></code> Versions  (optional and Advanced)<a class="headerlink" href="#installing-r-versions-optional-and-advanced" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>You can install kernels for multiple versions of R by supplying a name and displayname argument to the <code class="docutils literal notranslate"><span class="pre">installspec()</span></code> call (You still need to install these packages in all interpreters you want to run as a jupyter kernel!):</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># in R 3.3</span>
+<span class="n">IRkernel</span><span class="o">::</span><span class="nf">installspec</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;ir33&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">displayname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;R 3.3&#39;</span><span class="p">)</span>
+<span class="c1"># in R 3.2</span>
+<span class="n">IRkernel</span><span class="o">::</span><span class="nf">installspec</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;ir32&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">displayname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;R 3.2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="something-extra">
+<h2>Something Extra<a class="headerlink" href="#something-extra" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>You can install R from github using these commands. The first command installs the necessary libraries.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">devtools</span></code> is the library used to install <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> from the its repository on github.</p></li>
+<li><p>The last command will register the kernel for jupyter.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>install.packages<span class="o">(</span>c<span class="o">(</span><span class="s1">&#39;repr&#39;</span>,<span class="w"> </span><span class="s1">&#39;IRdisplay&#39;</span>,<span class="w"> </span><span class="s1">&#39;pbdZMQ&#39;</span>,<span class="w"> </span><span class="s1">&#39;devtools&#39;</span><span class="o">))</span>
+devtools::install_github<span class="o">(</span><span class="s1">&#39;IRkernel/IRkernel&#39;</span><span class="o">)</span>
+IRkernel::installspec<span class="o">()</span><span class="w">  </span><span class="c1"># to register the kernel in the current R installation</span>
+</pre></div>
+</div>
+</section>
+<section id="installing-shortcuts">
+<h2>Installing shortcuts<a class="headerlink" href="#installing-shortcuts" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Make useful shortcuts available: If you use Jupyter lab (and you should!), install Ryan Homer’s text-shortcuts extension:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>labextension<span class="w"> </span>install<span class="w"> </span>@techrah/text-shortcuts
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It will make available the familiar shortcuts <code class="docutils literal notranslate"><span class="pre">Ctrl/⌘</span> <span class="pre">+</span> <span class="pre">⇧</span> <span class="pre">+</span> <span class="pre">M</span></code> (<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">M</span></code> keys) for PC users or (<code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">+</span> <span class="pre">shift</span> <span class="pre">+</span> <span class="pre">M</span></code>) for Mac users to insert <code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code> and <code class="docutils literal notranslate"><span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">-</span></code> to insert <code class="docutils literal notranslate"><span class="pre">&lt;-</span></code>.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Now your environment is set up correctly, you can start working on your projects using Jupyter notebook or jupyter lab. We have also seen how to install and set up RStudio IDE. Using RStudio or Jupyter depends on your need and the type of project you are working on, however, I’d recommend using <code class="docutils literal notranslate"><span class="pre">RStudio</span></code> if you are developing packages and writing code for reuse or working with multiple projects. It is also suitable if you develop a blog or writing a book.</p></li>
+<li><p>Use Jupyter if you are a data scientist and need visualization to be in the same file (this is also possible from rmarkdown from RStudio). It is also great environment for education and for presentation.</p></li>
+</ul>
+</section>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Jupyter notebook: Refer to the <a class="reference external" href="https://docs.jupyter.org/en/latest/">documentation</a></p></li>
+<li><p>Jupyterlab: Refer to the <a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html">documentation</a></p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./chap_00"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python-prerequisite-for-installing-jupyter">Installing Python:  Prerequisite for Installing Jupyter</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-classic-jupyter-notebook">Installing Classic Jupyter Notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-jupyter-notebook">Launching <code class="docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">Notebook</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-jupyterlab">Installing JupyterLab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-jupyter-lab">Launching Jupyter Lab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note">Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-r-kernel">Installing the R Kernel</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-the-kernel-in-the-current-r-installation">Registering the kernel in the current R installation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-r-versions-optional-and-advanced">Installing <code class="docutils literal notranslate"><span class="pre">R</span></code> Versions  (optional and Advanced)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#something-extra">Something Extra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-shortcuts">Installing shortcuts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Saad Laouadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

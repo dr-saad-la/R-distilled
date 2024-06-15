@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; R Programming Language Distilled</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_00/2-installing-R-on-windows';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Installing Windows Useful Tools and Utilities" href="1-installing-windows-tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="R Programming Language Distilled - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="R Programming Language Distilled - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">R Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-installing-windows-tools.html">Installing Windows Useful Tools and Utilities</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap_00/2-installing-R-on-windows.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_00/2-installing-R-on-windows.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-regular-installation">The Regular Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-r-using-command-line-interface">Installing R Using Command Line Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-chocolatey">Installing <code class="docutils literal notranslate"><span class="pre">Chocolatey</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-wget-or-curl">Installing <code class="docutils literal notranslate"><span class="pre">wget</span></code> or <code class="docutils literal notranslate"><span class="pre">curl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-r-using-choco">Installing R Using <code class="docutils literal notranslate"><span class="pre">choco</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-r-and-running-the-installer">Downloading R and Running The Installer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-installation">Advanced Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-path">Checking the Path</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-r-to-path-manually">Adding R to Path Manually</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-rstudio">Installing RStudio</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div style="background-color:#F5F5DC; line-height:1.5; text-align:center;border:2px solid black;">
+    <div style="color:blue; font-size:24pt; font-weight:700;">Installing R On Windows Machines</div>
+</div><section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Installing softwares sometimes can be tricky or even daunting for computer novices, even for regular or home users.</p></li>
+<li><p>In this tutorial, we will walk you through R, RStudio IDE, Classic Jupyter and Jupyter lab installation step by step, and with different ways, using graphical user interface and Command Line Interface. We will also use some utilities such as <code class="docutils literal notranslate"><span class="pre">wget</span></code> and <code class="docutils literal notranslate"><span class="pre">choco</span></code> package manager.</p></li>
+<li><p>The third way of installing R is an advanced way that gives you the ability of full control over installing a software.</p></li>
+</ul>
+<section id="installation-and-setup">
+<h2>Installation and Setup<a class="headerlink" href="#installation-and-setup" title="Link to this heading">#</a></h2>
+</section>
+<section id="the-regular-installation">
+<h2>The Regular Installation<a class="headerlink" href="#the-regular-installation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The first step is to install R from <a class="reference external" href="https://cran.r-project.org/">CRAN</a></p></li>
+</ul>
+</section>
+<section id="installing-r-using-command-line-interface">
+<h2>Installing R Using Command Line Interface<a class="headerlink" href="#installing-r-using-command-line-interface" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Entering the technical world will eventually lead you to use the command line interface or CLI, in Windows, there are two native CLIs, CMD and PowerShell.</p></li>
+<li><p>In this section, we will discuss how to install R using the command line CMD, you can use PowerShell, or any similar command line installed on your system.</p></li>
+<li><p>To be able to follow along this section, you need to install first few utilities in this sequence:</p>
+<ol class="arabic simple">
+<li><p>Installing <code class="docutils literal notranslate"><span class="pre">chocolatey</span> <span class="pre">(choco)</span></code>: Which is a package manager for Windows.</p></li>
+<li><p>Installing <code class="docutils literal notranslate"><span class="pre">wget</span></code> using <code class="docutils literal notranslate"><span class="pre">choco</span></code>, this is optional, however, we prefer to use this tool so we can determine the directory (folder) where the installer will be.</p></li>
+<li><p>Run the installer from the command prompt.</p></li>
+</ol>
+</li>
+<li><p>In a later section, we will discuss how to use the command prompt to custom the R installation, knowing this step requires prior knowledge of how computers work, however it provides more control over your system.</p></li>
+</ul>
+<section id="installing-chocolatey">
+<h3>Installing <code class="docutils literal notranslate"><span class="pre">Chocolatey</span></code><a class="headerlink" href="#installing-chocolatey" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You can start the command prompt by typing <code class="docutils literal notranslate"><span class="pre">cmd</span></code> in the search (usually looks like the magnifying glass), You will find the Command Prompt app, you have to run in admin mode since you are installing a new software. Or use a combination of keys from the keyboard (Win + R), then type cmd in the Run dialog, to start cmd in Admin mode, you need to use <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">enter</span></code> keys.</p></li>
+<li><p>You can open PowerShell the same way.</p></li>
+<li><p>Here is the link to install <code class="docutils literal notranslate"><span class="pre">choco</span></code> using CMD: <a class="reference external" href="https://community.chocolatey.org/courses/installation/installing">Install with cmd</a></p></li>
+<li><p>Or you can install that from the PowerShell from this <a class="reference external" href="https://community.chocolatey.org/courses/installation/installing#powershell">Install with PowerShell</a></p></li>
+</ul>
+</section>
+<section id="installing-wget-or-curl">
+<h3>Installing <code class="docutils literal notranslate"><span class="pre">wget</span></code> or <code class="docutils literal notranslate"><span class="pre">curl</span></code><a class="headerlink" href="#installing-wget-or-curl" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You can install <code class="docutils literal notranslate"><span class="pre">wget</span></code> or <code class="docutils literal notranslate"><span class="pre">curl</span></code> utilities to download softwares or package from the Internet. Using these tools facilitates the downloading process, however, you do not need to use them if don’t want to.</p></li>
+<li><p>You can download <code class="docutils literal notranslate"><span class="pre">wget</span></code> from the <a class="reference external" href="https://gnuwin32.sourceforge.net/packages/wget.htm">official website</a> and then run the installer, and follow the installation instruction. Wait, we just downloaded a Windows package manager, this will make your life a lot easier, and now it the time to discover a world of fun using the command prompt, I am quite sure you will fall in love with using the command prompt.</p></li>
+<li><p>To install <code class="docutils literal notranslate"><span class="pre">wget</span></code> using <code class="docutils literal notranslate"><span class="pre">choco</span></code> simply run the following command (You must start CMD or PowerShell in admin mode)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This will prompt you to type <code class="docutils literal notranslate"><span class="pre">y</span></code> to confirm the installation, if you trust the package, you can even suppress the confirmation prompt by adding <code class="docutils literal notranslate"><span class="pre">-y</span></code> flag like this:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>-y
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Voila, that is it, <code class="docutils literal notranslate"><span class="pre">wget</span></code> installed on your system and it is ready to for use. I told you, the using the command prompt will make your life easier.</p></li>
+</ul>
+</section>
+<section id="installing-r-using-choco">
+<h3>Installing R Using <code class="docutils literal notranslate"><span class="pre">choco</span></code><a class="headerlink" href="#installing-r-using-choco" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Installing R using <code class="docutils literal notranslate"><span class="pre">choco</span></code> package manager is the easiest and fastest way, it is simply typing a simple command and it will do most of the things for you, like downloading, check data integrity and adding R to the path. No intervention from you, simply type the following command, and if you don’t wish for confirmation prompt add <code class="docutils literal notranslate"><span class="pre">-y</span></code> flag. However, if you are interested in the file that does all this, you can do that by typing <code class="docutils literal notranslate"><span class="pre">p</span></code> when it is prompted that to you, if satisfied, type <code class="docutils literal notranslate"><span class="pre">y</span></code> to proceed.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>r<span class="w"> </span>-y
+</pre></div>
+</div>
+</section>
+<section id="downloading-r-and-running-the-installer">
+<h3>Downloading R and Running The Installer<a class="headerlink" href="#downloading-r-and-running-the-installer" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Now, it is time to download R installer, check its data integrity, then run the installer all from within the command prompt, at this stage we will accept the default settings provided with the installer. Here the steps of processing the installation:</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Let us create a folder (directory) like <code class="docutils literal notranslate"><span class="pre">Rstuff</span></code> in <code class="docutils literal notranslate"><span class="pre">C:\Users\Public\RStuff</span></code>  , the placement where the installer will be using the this command (You can create the folder of your choice)</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>Rstuff
+<span class="nb">cd</span><span class="w"> </span>Rstuff
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Download the installer using the installer using <code class="docutils literal notranslate"><span class="pre">wget</span></code></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://cran.r-project.org/bin/windows/base/R-4.3.1-win.exe
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Check the integrity if you wish with the hash key provided, if they don’t match, it means that the installer did not download correctly of it is tampered with.</p>
+<ul class="simple">
+<li><p>First, you need to check the hash-key or <a class="reference external" href="https://cran.r-project.org/bin/windows/base/md5sum.R-4.3.1.txt">fingerprint</a></p></li>
+<li><p>Generate the hash key for the installer using <code class="docutils literal notranslate"><span class="pre">cerutil</span></code> utility.</p></li>
+<li><p>Compare the keys</p></li>
+<li><p>You can save both keys in different files then use the <code class="docutils literal notranslate"><span class="pre">cf</span></code> command to make sure that keys are really match.</p></li>
+</ul>
+</li>
+</ol>
+<ul class="simple">
+<li><p>Here are the steps of checking data integrity:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certutil<span class="w"> </span>-shasum<span class="w"> </span>installer<span class="w"> </span>MD5
+
+<span class="c1"># You may save this to a file </span>
+certutil<span class="w"> </span>-shasum<span class="w"> </span>installer<span class="w"> </span>MD5<span class="w"> </span>&gt;<span class="w"> </span>genkey.txt
+<span class="c1"># Copy and paste the provided key getkey.txt</span>
+<span class="c1"># Compare the two files </span>
+cf<span class="w"> </span>genkey.txt<span class="w"> </span>getkey.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If you get the message <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">difference</span> <span class="pre">encountered</span></code> then you are good to go. If the files don’t match, you need to consider downloading the software again.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Run the installer: You can simply run the installer from the command prompt, and R will be installed on your system, you may need to confirm the installation, or you may change the directory to a directory where you wish the installation to take place.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>R-4.3.1-win.exe
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Now, R is installed.</p></li>
+</ul>
+</section>
+<section id="advanced-installation">
+<h3>Advanced Installation<a class="headerlink" href="#advanced-installation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>This section is meant to professionals who wants to have full control over installing the package like changing the default directory, and silencing the installation or setting environment variables. This can be achieved easily with the paid version of <code class="docutils literal notranslate"><span class="pre">choco</span></code>, however, we are interested in open source tools, even it takes a little more effort to read the documentation of R (or any other package). We will provide how to do that with in here and refer you to section where it is explained:</p>
+<ul>
+<li><p>Download the installer using <code class="docutils literal notranslate"><span class="pre">wget</span></code> as explained above.</p></li>
+<li><p>Read this <a class="reference external" href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#Can-I-customize-the-installation_003f">section</a> from R documentation:</p>
+<ul>
+<li><p>Set the default installation directory <code class="docutils literal notranslate"><span class="pre">‘/DIR=&quot;x:\dirname&quot;’</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">‘/CURRENTUSER’</span></code> to install for the current user only even if the current user has Administrator privileges.</p></li>
+<li><p>Silence the installation using one of these options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">‘/SILENT’</span></code> to only show the installation progress window and error messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/VERYSILENT’</span></code> to only show error messages.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Here is an example to install R in <code class="docutils literal notranslate"><span class="pre">C:\Renv</span></code> (Renv is directory where the installation will take place) for the current user and totally silencing the installation</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>R-4.3.1-win.exe<span class="w"> </span><span class="s2">&quot;/Dir=C:\Renv /CURRENTUSER /VERYSILENT&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-the-path">
+<h3>Checking the Path<a class="headerlink" href="#checking-the-path" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You may want to check that <code class="docutils literal notranslate"><span class="pre">R</span></code> has been added to the path by typing <code class="docutils literal notranslate"><span class="pre">R</span></code> in the command prompt, if for some reason it hasn’t been added, we can add it to the path using either the command prompt or the graphical user interface. In this section, we add R to the path using the command prompt (in administrator mode).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setx<span class="w"> </span>/m<span class="w"> </span><span class="s2">&quot;path-to-R;%PATH%&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>That is it, relaunch the command prompt and start using R from there. I told you, using the command prompt is incredibly fast and amazing.</p></li>
+</ul>
+</section>
+<section id="adding-r-to-path-manually">
+<h3>Adding R to Path Manually<a class="headerlink" href="#adding-r-to-path-manually" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Open the run dialog (this is the easiest way)</p>
+<ul>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sysdm.cpl</span></code> in the Run dialog and press enter</p></li>
+<li><p>The System properties will pop up</p></li>
+<li><p>Go advanced tab</p></li>
+<li><p>Press on Environment variables</p></li>
+<li><p>Go to System variable and find <code class="docutils literal notranslate"><span class="pre">path</span></code> and press on edit (This will add Python system wide)</p></li>
+<li><p>Press on <code class="docutils literal notranslate"><span class="pre">new</span></code></p></li>
+<li><p>Add the location of the executable Python, this location looks like this <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\R\bin</span></code></p></li>
+<li><p>Press ok</p></li>
+<li><p>You can add Python to this specific user the same way you did with system variable from <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">variables</span></code></p></li>
+<li><p>When you finish, press ok, the ok from the environment variables and finally Ok.</p></li>
+<li><p>Test that R has been added to the path from the command prompt by typing <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">--version</span></code> there.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="installing-rstudio">
+<h2>Installing RStudio<a class="headerlink" href="#installing-rstudio" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>RStudio is an incredibly useful Integrated Development Environment or IDE for writing and using by many data scientists.</p></li>
+<li><p><strong>RStudio is used for writing and testing R codes, because it provides</strong></p>
+<ul>
+<li><p>Console window</p></li>
+<li><p>Code editor</p></li>
+<li><p>tools for creating plot graphics and debugging code.</p></li>
+<li><p>You can even support  version control features.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>RStudio will not function unless R is already installed on your machine. It is important to understand that R and RStudio are two separate installations: R is the programming language itself, while RStudio is an integrated development environment (IDE) that provides a user-friendly interface for working with R. Therefore, you must first install R, and then install RStudio to ensure everything works correctly.</p>
+</div>
+<ul class="simple">
+<li><p>Install <a class="reference external" href="https://posit.co/download/rstudio-desktop/">RStudio</a></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://posit.co/download/rstudio-desktop/
+
+<span class="c1"># check the data integrity</span>
+<span class="c1"># run the installer</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Let <code class="docutils literal notranslate"><span class="pre">Choco</span></code> do the job for you</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>rstudio
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./chap_00"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-installing-windows-tools.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installing Windows Useful Tools and Utilities</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-and-setup">Installation and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-regular-installation">The Regular Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-r-using-command-line-interface">Installing R Using Command Line Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-chocolatey">Installing <code class="docutils literal notranslate"><span class="pre">Chocolatey</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-wget-or-curl">Installing <code class="docutils literal notranslate"><span class="pre">wget</span></code> or <code class="docutils literal notranslate"><span class="pre">curl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-r-using-choco">Installing R Using <code class="docutils literal notranslate"><span class="pre">choco</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-r-and-running-the-installer">Downloading R and Running The Installer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-installation">Advanced Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-path">Checking the Path</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-r-to-path-manually">Adding R to Path Manually</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-rstudio">Installing RStudio</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Saad Laouadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

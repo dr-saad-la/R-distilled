@@ -1,2 +1,2 @@
-# R-distilled
-R Programming Language distilled
+# R Programming Language distilled
+
