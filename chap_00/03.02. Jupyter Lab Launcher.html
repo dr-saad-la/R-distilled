@@ -1,0 +1,903 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Launcher &#8212; R Programming Language Distilled</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_00/03.02. Jupyter Lab Launcher';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="R Programming Language Distilled - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="R Programming Language Distilled - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">R Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-installing-windows-tools.html">Installing Windows Useful Tools and Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-installing-R-on-windows.html">Introduction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap_00/03.02. Jupyter Lab Launcher.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_00/03.02. Jupyter Lab Launcher.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Launcher</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The Launcher</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-look-at-jupyter-lab">First Look at Jupyter Lab</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-menu-bar">The Menu Bar</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tool-bar">The tool bar</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-jupyter-lab-version">Check Jupyter Lab Version</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-essentials-of-jupyter-lab">The Essentials of Jupyter lab</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab-tool-bar">Jupyter Lab tool bar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-markdown-and-raw">Code, Markdown and Raw</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-keyboard-shortcuts-with-jupyter-lab">Using The keyboard shortcuts with Jupyter Lab</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-esc-key">The <code class="docutils literal notranslate"><span class="pre">esc</span></code> Key</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exit-the-edit-mode">Exit the edit mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-the-command-mode">Enter the Command Mode</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#command-mode">Command Mode</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-shortcuts">Common shortcuts</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-file-menu">The File Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-edit-menu">The Edit Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-view-menu">The View Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-run-menu">The Run Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-jupyterlab-interface">The JupyterLab Interface</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-a-header">This is a header</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-the-screen-into-multiple-screens">Splitting the Screen Into Multiple Screens</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The View Menu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-activate-command-palette">The Activate Command Palette</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-settings-menu">The Settings Menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-installed-extensions">Checking the Installed Extensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#render-with-panel">Render with Panel</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shortcuts">Shortcuts</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="the-launcher">
+<h1>The Launcher<a class="headerlink" href="#the-launcher" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>The initial interface you encounter is called the “JupyterLab Launcher.” This launcher serves as a hub where you can access and manage various tools and resources for your data science and programming tasks. Here’s a breakdown of what you’ll typically find on the JupyterLab Dashboard:</p></li>
+<li><p>Notebook Section: At the top of the launcher, you’ll see the “Notebook” section. This is where you can create, open, and manage your Jupyter notebooks.</p></li>
+<li><p>The big icons in the JupyterLab Launcher that allow you to start new activities, such as creating a new notebook or console, are often referred to as “Launcher Cards” or simply “Cards.”</p></li>
+<li><p>These cards provide a visually appealing and easily accessible way to initiate different types of activities within JupyterLab. Each card typically represents a specific action or tool that you can launch with a single click.</p></li>
+<li><p>You can create a new jupyter notebook by pressing on this card.</p></li>
+<li><p>Console Section:</p>
+<ul>
+<li><p>Just below the notebook section, you’ll find the “Console” section. This area is where you can interact with programming languages directly through a console interface. For example, you can open Python or R consoles here to execute code and see immediate results without creating a full notebook. This is useful for quick experimentation and testing.</p></li>
+</ul>
+</li>
+<li><p>Other Tools and Terminals:</p>
+<ul>
+<li><p>This area includes terminals, where you can run command-line commands directly from within JupyterLab. There is also text editor and markdown editor.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="first-look-at-jupyter-lab">
+<h1>First Look at Jupyter Lab<a class="headerlink" href="#first-look-at-jupyter-lab" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This empty area that has one empty <code class="docutils literal notranslate"><span class="pre">cell</span></code>, this is called a cell (this is the first term you learn if this is the first time you work with jupyter), the whole are that holds the cells is referred to as the “Jupyter Lab Workspace” or simply the “Workspace.”</p></li>
+<li><p>It’s the graphical user interface (GUI) where you interact with your notebooks, code cells, markdown cells, and other features provided by Jupyter Lab.</p></li>
+<li><p>The workspace includes various panels, tabs, and tools that allow you to manage and organize your notebooks, code, and outputs.</p></li>
+<li><p>It’s the environment where you can create, edit, and execute your code, as well as perform tasks such as managing files, installing packages, and visualizing data. The workspace layout can be customized to suit your preferences and workflow.</p></li>
+</ul>
+</section>
+<section id="the-menu-bar">
+<h1>The Menu Bar<a class="headerlink" href="#the-menu-bar" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>The bar that contains the menus in JupyterLab is known as the “Menu Bar.” The Menu Bar provides access to various menus that contain a wide range of commands and options for managing your JupyterLab environment, notebooks, files, and more.</p></li>
+<li><p>The Menu Bar usually includes menus like:</p>
+<ul>
+<li><p>File: This menu allows you to perform operations related to files and notebooks, such as creating new notebooks, saving notebooks, and exporting notebooks in various formats.</p></li>
+<li><p>Edit: The Edit menu provides commands for editing cells, copying, cutting, pasting, and other editing operations.</p></li>
+<li><p>View: In the View menu, you can control the visibility of different panels, configure the layout, and toggle various interface elements.</p></li>
+<li><p>Insert: The Insert menu lets you add new cells to your notebook and choose their type (code or markdown).</p></li>
+<li><p>Kernel: This menu contains commands for managing the kernels associated with your notebook. You can start, interrupt, restart, and shut down kernels from here.</p></li>
+<li><p>Run: The Run menu provides options to execute code cells, run all cells, and restart the kernel and run all cells.</p></li>
+<li><p>Cell: This menu contains commands for manipulating cells, such as merging, splitting, and changing cell types.</p></li>
+<li><p>Widgets: If you’re using interactive widgets, this menu provides options to manage and interact with them.</p></li>
+<li><p>Help: The Help menu includes resources for getting help, accessing keyboard shortcuts, and finding additional documentation.</p></li>
+</ul>
+</li>
+<li><p>Each item within a menu in JupyterLab is typically referred to as a “Menu Item” or “Menu Option.” Menu items are specific commands or options that you can select to perform various actions or access different functionalities within the JupyterLab interface.</p></li>
+<li><p>For example, within the “File” menu, you might have menu items like:</p>
+<ul>
+<li><p>New Notebook</p></li>
+<li><p>Open Notebook</p></li>
+<li><p>Save Notebook</p></li>
+<li><p>Save Notebook As</p></li>
+<li><p>Export Notebook As</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-tool-bar">
+<h1>The tool bar<a class="headerlink" href="#the-tool-bar" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>This bar is typically referred to as the “Toolbar.” The toolbar provides quick access to various actions and functionalities that you can perform within the JupyterLab interface. These actions often include creating new cells, copying and cutting cells, moving cells, and other essential operations.</p></li>
+<li><p>The toolbar is an important part of the JupyterLab user interface, allowing you to interact with your notebook documents and other content easily and efficiently. The specific icons available in the toolbar may vary based on your current mode (command mode or edit mode) and the context in which you are working.</p></li>
+</ul>
+<section id="check-jupyter-lab-version">
+<h2>Check Jupyter Lab Version<a class="headerlink" href="#check-jupyter-lab-version" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>You can check jupyter lab version like this:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+jupyter lab --version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.1.8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jupyterlab</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jupyterlab</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.1.8
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+<section id="the-essentials-of-jupyter-lab">
+<h1>The Essentials of Jupyter lab<a class="headerlink" href="#the-essentials-of-jupyter-lab" title="Link to this heading">#</a></h1>
+<section id="jupyter-lab-tool-bar">
+<h2>Jupyter Lab tool bar<a class="headerlink" href="#jupyter-lab-tool-bar" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The first thing after we open jupyter notebook, we see at the top part, the tool bar, we have the save icon, the <code class="docutils literal notranslate"><span class="pre">+</span></code> plus, for adding a cell, when you press on it you see a cell is added below. So, we call this empty dialog or rectangle a <strong>cell</strong></p></li>
+<li><p>And you have the <code class="docutils literal notranslate"><span class="pre">cut</span></code> to cut a cell, for example</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">copy</span></code> to copy the cell content</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">paste</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">triangle</span></code> to run the cell, the shortcut is:</p>
+<ul>
+<li><p>Run and add a cell below: <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">enter</span></code></p></li>
+<li><p>Run and stay in the same cell <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">enter</span></code></p></li>
+<li><p>Activate the cell, type <code class="docutils literal notranslate"><span class="pre">enter</span></code></p></li>
+</ul>
+</li>
+<li><p>For example, I hit <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">enter</span></code>, then I activate it using <code class="docutils literal notranslate"><span class="pre">enter</span></code></p></li>
+<li><p>The square to stop or interupt the kernel, if it takes so long, you did a mistake.</p></li>
+<li><p>This circular arrow is to restart the kernel</p></li>
+<li><p>The double triangle to restart and run all.</p></li>
+</ul>
+</section>
+<section id="code-markdown-and-raw">
+<h2>Code, Markdown and Raw<a class="headerlink" href="#code-markdown-and-raw" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Code Cell</strong>: This is where you can write and execute code. Code cells are used for running Python code (or other supported languages) and displaying the output.</p></li>
+<li><p><strong>Markdown Cell</strong>: This type of cell is used for creating and formatting text using Markdown syntax. Markdown cells are often used to provide explanations, documentation, or annotations alongside your code.</p></li>
+</ul>
+</section>
+</section>
+<section id="using-the-keyboard-shortcuts-with-jupyter-lab">
+<h1>Using The keyboard shortcuts with Jupyter Lab<a class="headerlink" href="#using-the-keyboard-shortcuts-with-jupyter-lab" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>The Jupyter Notebook has two different keyboard input mode:</p>
+<ul>
+<li><p><strong>Edit mode</strong> allows you to type code or text into a cell and it looks activate.</p></li>
+<li><p><strong>Command mode</strong> binds the keyboard to notebook level commands.</p></li>
+</ul>
+</li>
+<li><p>Why you need this, if you want to be more productive and fast or you are a keyboard guy, the things that you do with the mouse, you can do using keyboard shortcuts.</p></li>
+</ul>
+</section>
+<section id="the-esc-key">
+<h1>The <code class="docutils literal notranslate"><span class="pre">esc</span></code> Key<a class="headerlink" href="#the-esc-key" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Let us talk about the <code class="docutils literal notranslate"><span class="pre">esc</span></code> key first, The “Esc” (Escape) key is typically located at the top-left corner of a standard computer keyboard, just above the “F1” function key. It is usually a rectangular key with the word “Esc” written on it.</p></li>
+</ul>
+<section id="exit-the-edit-mode">
+<h2>Exit the edit mode<a class="headerlink" href="#exit-the-edit-mode" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In Jupyter Notebook, the “Esc” key is referred to as the “Escape” key. It’s often used to exit from edit mode (when you’re editing a cell’s content)</p></li>
+</ul>
+</section>
+<section id="enter-the-command-mode">
+<h2>Enter the Command Mode<a class="headerlink" href="#enter-the-command-mode" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Enter command mode</strong> (where you can use keyboard shortcuts to perform various actions on cells). In command mode, you can utilize keyboard shortcuts to manipulate cells, create new cells, and perform other notebook-related tasks.</p></li>
+<li><p>You can press <code class="docutils literal notranslate"><span class="pre">esc</span></code> and then another key (this binds two or more key to a command)</p></li>
+<li><p>I will be focusing the command mode</p></li>
+</ul>
+</section>
+</section>
+<section id="command-mode">
+<h1>Command Mode<a class="headerlink" href="#command-mode" title="Link to this heading">#</a></h1>
+<section id="common-shortcuts">
+<h2>Common shortcuts<a class="headerlink" href="#common-shortcuts" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">b</span></code>: Press <code class="docutils literal notranslate"><span class="pre">esc</span></code> and lift your finger and then press <code class="docutils literal notranslate"><span class="pre">b</span></code>, to add a new cell below</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">a</span></code>: Add a cell above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">c</span></code>: to copy a content of a cell</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">v</span></code>: To paste</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">x</span></code>: To cut a cell</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">m</span></code>: To change a cell to a markdown</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">y</span></code>: To change the content cell into a code</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">r</span></code>: To change to a content to raw</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">d</span></code> + <code class="docutils literal notranslate"><span class="pre">d</span></code>: To delete a cell</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esc</span></code> + <code class="docutils literal notranslate"><span class="pre">z</span></code>: to undo an operation.</p></li>
+</ol>
+</section>
+</section>
+<section id="the-file-menu">
+<h1>The File Menu<a class="headerlink" href="#the-file-menu" title="Link to this heading">#</a></h1>
+</section>
+<section id="the-edit-menu">
+<h1>The Edit Menu<a class="headerlink" href="#the-edit-menu" title="Link to this heading">#</a></h1>
+</section>
+<section id="the-view-menu">
+<h1>The View Menu<a class="headerlink" href="#the-view-menu" title="Link to this heading">#</a></h1>
+</section>
+<section id="the-run-menu">
+<h1>The Run Menu<a class="headerlink" href="#the-run-menu" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## </span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-jupyterlab-interface">
+<h1>The JupyterLab Interface<a class="headerlink" href="#the-jupyterlab-interface" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li></li>
+</ul>
+<p><a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/interface.html#the-jupyterlab-interface">source</a></p>
+<section id="this-is-a-header">
+<h2>This is a header<a class="headerlink" href="#this-is-a-header" title="Link to this heading">#</a></h2>
+</section>
+<section id="splitting-the-screen-into-multiple-screens">
+<h2>Splitting the Screen Into Multiple Screens<a class="headerlink" href="#splitting-the-screen-into-multiple-screens" title="Link to this heading">#</a></h2>
+</section>
+<section id="id1">
+<h2>The View Menu<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="the-activate-command-palette">
+<h3>The Activate Command Palette<a class="headerlink" href="#the-activate-command-palette" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The shortcut is (command + shift + c) on Mac and (ctrl + shift + c) On Pc</p></li>
+<li></li>
+</ul>
+<p><a class="reference external" href="https://jupyterlab.readthedocs.io/en/stable/user/commands.html#command-palette">source</a></p>
+</section>
+</section>
+<section id="the-settings-menu">
+<h2>The Settings Menu<a class="headerlink" href="#the-settings-menu" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Autosave document</p></li>
+<li><p>Auto-close brackets</p></li>
+<li></li>
+</ol>
+</section>
+<section id="checking-the-installed-extensions">
+<h2>Checking the Installed Extensions<a class="headerlink" href="#checking-the-installed-extensions" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>labextension<span class="w"> </span>list
+</pre></div>
+</div>
+<p><strong>1. Activating The Contextual Menu:</strong></p>
+<ul class="simple">
+<li><p>Go View then Activate command palette (command (ctrl)+ shift + C)</p></li>
+<li><p>This will help me when teaching and I don’t have to remember the arguments available in a function.</p></li>
+</ul>
+<p><strong>2. Context Help menu</strong>: The shortcut for this is <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">(command)</span> <span class="pre">+</span> <span class="pre">i</span></code>. This will show the help of a function.</p>
+</section>
+<section id="render-with-panel">
+<h2>Render with Panel<a class="headerlink" href="#render-with-panel" title="Link to this heading">#</a></h2>
+<p>url = <a class="reference external" href="https://panel.holoviz.org/">https://panel.holoviz.org/</a></p>
+</section>
+</section>
+<section id="shortcuts">
+<h1>Shortcuts<a class="headerlink" href="#shortcuts" title="Link to this heading">#</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. Command Mode (press Esc to enable)
+2. F : find and replace
+3. Ctrl-Shift-F : open the command palette
+4. Ctrl-Shift-P : open the command palette
+Enter : enter edit mode
+P : open the command palette
+Shift-Enter : run cell, select below
+Ctrl-Enter : run selected cells
+Alt-Enter : run cell and insert below
+Y : change cell to code
+M : change cell to markdown
+R : change cell to raw
+1 : change cell to heading 1
+2 : change cell to heading 2
+3 : change cell to heading 3
+4 : change cell to heading 4
+5 : change cell to heading 5
+6 : change cell to heading 6
+K : select cell above
+Up : select cell above
+Down : select cell below
+J : select cell below
+Shift-K : extend selected cells above
+Shift-Up : extend selected cells above
+Shift-Down : extend selected cells below
+Shift-J : extend selected cells below
+Ctrl-A : select all cells
+A : insert cell above
+B : insert cell below
+X : cut selected cells
+C : copy selected cells
+Shift-V : paste cells above
+V : paste cells below
+Z : undo cell deletion
+D,D : delete selected cells
+Shift-M : merge selected cells, or current cell with cell below if only one cell is selected
+Ctrl-S : Save and Checkpoint
+S : Save and Checkpoint
+L : toggle line numbers
+O : toggle output of selected cells
+Shift-O : toggle output scrolling of selected cells
+H : show keyboard shortcuts
+I,I : interrupt the kernel
+0,0 : restart the kernel (with dialog)
+Ctrl-V : Dialog for paste from system clipboard
+Esc : close the pager
+Q : close the pager
+Shift-L : toggles line numbers in all cells, and persist the setting
+Shift-Space : scroll notebook up
+Space : scroll notebook down
+Edit Mode (press Enter to enable)
+Tab : code completion or indent
+Shift-Tab : tooltip
+Ctrl-] : indent
+Ctrl-[ : dedent
+Ctrl-A : select all
+Ctrl-Z : undo
+Ctrl-/ : comment
+Ctrl-D : delete whole line
+Ctrl-U : undo selection
+Insert : toggle overwrite flag
+Ctrl-Home : go to cell start
+Ctrl-Up : go to cell start
+Ctrl-End : go to cell end
+Ctrl-Down : go to cell end
+Ctrl-Left : go one word left
+Ctrl-Right : go one word right
+Ctrl-Backspace : delete word before
+Ctrl-Delete : delete word after
+Ctrl-Y : redo
+Alt-U : redo selection
+Ctrl-M : enter command mode
+Ctrl-Shift-F : open the command palette
+Ctrl-Shift-P : open the command palette
+Esc : enter command mode
+Shift-Enter : run cell, select below
+Ctrl-Enter : run selected cells
+Alt-Enter : run cell and insert below
+Ctrl-Shift-Minus : split cell at cursor(s)
+Ctrl-S : Save and Checkpoint
+Down : move cursor down
+Up : move cursor up
+</pre></div>
+</div>
+<p><a class="reference external" href="https://nocomplexity.com/documents/jupyterlab/keyboardshortcuts.html">source</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chap_00"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The Launcher</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-look-at-jupyter-lab">First Look at Jupyter Lab</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-menu-bar">The Menu Bar</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tool-bar">The tool bar</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-jupyter-lab-version">Check Jupyter Lab Version</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-essentials-of-jupyter-lab">The Essentials of Jupyter lab</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab-tool-bar">Jupyter Lab tool bar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-markdown-and-raw">Code, Markdown and Raw</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-keyboard-shortcuts-with-jupyter-lab">Using The keyboard shortcuts with Jupyter Lab</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-esc-key">The <code class="docutils literal notranslate"><span class="pre">esc</span></code> Key</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exit-the-edit-mode">Exit the edit mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-the-command-mode">Enter the Command Mode</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#command-mode">Command Mode</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-shortcuts">Common shortcuts</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-file-menu">The File Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-edit-menu">The Edit Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-view-menu">The View Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-run-menu">The Run Menu</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-jupyterlab-interface">The JupyterLab Interface</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-is-a-header">This is a header</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-the-screen-into-multiple-screens">Splitting the Screen Into Multiple Screens</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The View Menu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-activate-command-palette">The Activate Command Palette</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-settings-menu">The Settings Menu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-installed-extensions">Checking the Installed Extensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#render-with-panel">Render with Panel</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shortcuts">Shortcuts</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Saad Laouadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

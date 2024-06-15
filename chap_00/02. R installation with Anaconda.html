@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; R Programming Language Distilled</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap_00/02. R installation with Anaconda';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="R Programming Language Distilled - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="R Programming Language Distilled - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">R Environment Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-installing-windows-tools.html">Installing Windows Useful Tools and Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-installing-R-on-windows.html">Introduction</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap_00/02. R installation with Anaconda.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap_00/02. R installation with Anaconda.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presentation">Presentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#it-is-recommended-to-use-conda">It is recommended to use Conda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-distributions-conda-and-mamba">Installing Distributions <code class="docutils literal notranslate"><span class="pre">Conda</span></code> and <code class="docutils literal notranslate"><span class="pre">Mamba</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-anaconda">Installing Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-installing-of-distributions">Advanced Installing of Distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-prompt">Anaconda Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-anaconda-prompt">Key Features of Anaconda Prompt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-conda-manager">The <code class="docutils literal notranslate"><span class="pre">conda</span></code> Manager</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-install-irkernel-using-conda-on-windows-machines">Steps to Install <code class="docutils literal notranslate"><span class="pre">IRKernel</span></code> Using <code class="docutils literal notranslate"><span class="pre">Conda</span></code> on Windows Machines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-anaconda">Install Anaconda:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-anaconda-prompt">Launch Anaconda Prompt:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-conda-environment-optional-but-recommended">Create a New Conda Environment (Optional but Recommended):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-the-conda-environment">Activate the Conda Environment:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-r">Install <code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note">Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-irkernel-with-conda">Installing IRKernel with <code class="docutils literal notranslate"><span class="pre">conda</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#once-inside-the-r-console-install-irkernel">Once inside the <code class="docutils literal notranslate"><span class="pre">R</span></code> console, install <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code>:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-the-kernel-in-the-current-r-installation">Registering the kernel in the current R installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-jupyter-notebook">Launch Jupyter Notebook:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-notebook-with-r-kernel">Create a New Notebook with R Kernel:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-using-r-in-jupyter-notebook">Start Using R in Jupyter Notebook:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-rstudio-from-anaconda">Installing RStudio From Anaconda</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-rstudio-from-anaconda">Launch RStudio from Anaconda</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-r-version-in-rstudio">Verify R Version in RStudio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div style="background-color:#F5F5DC; line-height:1.5; text-align:center;border:2px solid black;">
+    <div style="color:blue; font-size:24pt; font-weight:700;">Installing IRkernel, Jupyter and Jupyter Lab</div>
+</div><section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Modern data analysis often requires working with multiple programming languages to gain deeper insights and create meaningful visualizations. One powerful combination is utilizing R for statistical computing and analysis alongside Python for its versatile data manipulation capabilities.</p></li>
+<li><p>Integrating R with Jupyter Notebook enhances this synergy, allowing analysts to seamlessly switch between languages within a single interface. This article walks you through the process of installing IRKernel using <code class="docutils literal notranslate"><span class="pre">conda</span></code> on a Windows system, enabling you to leverage the strengths of both R and Python in your data analysis workflow.</p></li>
+</ul>
+<section id="presentation">
+<h2>Presentation<a class="headerlink" href="#presentation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In this second way of environment setup, we will be using anaconda. If you are a Python programmer and already familiar with it, or may be you already have <code class="docutils literal notranslate"><span class="pre">anaconda</span></code> installed, and you want to take advantage of <code class="docutils literal notranslate"><span class="pre">R</span></code> capabilities.</p></li>
+<li><p><strong>We will talk about:</strong></p>
+<ul>
+<li><p>How to install anaconda (miniconda or anaconda)</p></li>
+<li><p>How to install mamba (minimamba or mamba-forge)</p></li>
+<li><p>How to install <code class="docutils literal notranslate"><span class="pre">R</span></code> from within conda prompt</p></li>
+<li><p>How to install Jupyter lab and classic Jupyter notebook</p></li>
+<li><p>How to install <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code></p></li>
+<li><p>How to add <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> to jupyter lab and jupyter notebook.</p></li>
+<li><p>We will also configure jupyter notebook and install some extensions.</p></li>
+</ul>
+</li>
+</ul>
+<section id="it-is-recommended-to-use-conda">
+<h3>It is recommended to use Conda<a class="headerlink" href="#it-is-recommended-to-use-conda" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>For new users, we highly recommend installing Anaconda. Anaconda conveniently installs Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.</p></li>
+<li><p>Use the following installation steps:</p></li>
+<li><p>Download Anaconda. We recommend downloading Anaconda’s latest Python 3 version (currently Python 3.9).</p></li>
+<li><p>Install the version of Anaconda which you downloaded, following the instructions on the download page.</p></li>
+<li><p>Congratulations, you have installed Jupyter Notebook. To run the notebook</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installing-distributions-conda-and-mamba">
+<h2>Installing Distributions <code class="docutils literal notranslate"><span class="pre">Conda</span></code> and <code class="docutils literal notranslate"><span class="pre">Mamba</span></code><a class="headerlink" href="#installing-distributions-conda-and-mamba" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>You may skip this section if you already have either distribution installed. I will start this section by installing a distribution using the command prompt using <code class="docutils literal notranslate"><span class="pre">choco</span></code> package manager. Note that you do not have to install all them just install one.</p></li>
+<li><p>If you are an advanced user, you may install the full version of a distribution, otherwise install the mini version. The difference between <code class="docutils literal notranslate"><span class="pre">mamba</span></code> and <code class="docutils literal notranslate"><span class="pre">conda</span></code> is beyond the scope of this tutorial, however, I am mentioning both of them here so that you will be aware them. There is another distribution I did not mention here as well which is known as <code class="docutils literal notranslate"><span class="pre">Enthought</span></code>.</p></li>
+<li><p>Choosing either one depends on your needs, your computer restrictions such as memory and space, or based on the requirements of your company.</p></li>
+</ul>
+<section id="installing-anaconda">
+<h3>Installing Anaconda<a class="headerlink" href="#installing-anaconda" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Installing miniconda</strong>: Install [Miniconda(<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html#installing">https://docs.conda.io/en/latest/miniconda.html#installing</a>)</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>miniconda
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Installing the full version of Anaconda</strong>:  [Anaconda] (<a class="reference external" href="https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Windows-x86_64.exe">https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Windows-x86_64.exe</a>)</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>anaconda
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Installing mamba (The mini version)</strong>: <a class="reference external" href="https://github.com/conda-forge/miniforge#mambaforge">mamba mini version</a></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>mini-forge
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Installing mamba (The full version)</strong>: <a class="reference external" href="https://github.com/conda-forge/miniforge#mambaforge">mamba full version</a></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>choco<span class="w"> </span>install<span class="w"> </span>mamba
+</pre></div>
+</div>
+</section>
+<section id="advanced-installing-of-distributions">
+<h3>Advanced Installing of Distributions<a class="headerlink" href="#advanced-installing-of-distributions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In this section I will describe how to install anaconda (or mamba) distribution by downloading the installer first using <code class="docutils literal notranslate"><span class="pre">wget</span></code> utility (you can install it of download the installer manually from the official website.), then check the file integrity, finally run the installer.</p></li>
+<li><p><strong>1. Installing conda or miniconda</strong>
+<strong>1. Installing miniconda</strong>: go to this <a class="reference external" href="https://docs.conda.io/en/main/miniconda.html">link</a>, then right click on the link of the installer that suits your machine, then select copy link address.</p></li>
+<li><p>Change the directory to your desired working directory using the <code class="docutils literal notranslate"><span class="pre">cd</span></code> command</p></li>
+<li><p>paste that link to the <code class="docutils literal notranslate"><span class="pre">wget</span></code> utility.</p></li>
+<li><p>Here is and example installing on windows machine 64-bits</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://docs.conda.io/en/main/miniconda.html
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It is necessary to check the data integrity. We can use <code class="docutils literal notranslate"><span class="pre">certutil</span></code> from the command line on windows like this:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certutil<span class="w"> </span>-hashfile<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>SHA256
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>We can compare between the two keys this way</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certutil<span class="w"> </span>-hashfile<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>SHA256<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>/i<span class="w"> </span><span class="s2">&quot;&lt;provided_hash&gt;&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For example</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cetutil<span class="w"> </span>-hashfile<span class="w"> </span>miniconda<span class="w"> </span>sha256<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>/i<span class="w"> </span><span class="s2">&quot;00e8370542836862d4c790aa8966f1d7344a8addd4b766004febcb23f40e2914&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Now, it is good to run the installer</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the installer</span>
+Miniconda-X-X-exe
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Here is a program to check to compare the keys</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>@echo<span class="w"> </span>off
+setlocal
+
+<span class="nb">set</span><span class="w"> </span><span class="s2">&quot;filename=file.txt&quot;</span>
+<span class="nb">set</span><span class="w"> </span><span class="s2">&quot;provided_hash=123456789abcdef&quot;</span>
+
+<span class="k">for</span><span class="w"> </span>/f<span class="w"> </span>%%a<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">(</span><span class="s1">&#39;certutil -hashfile &quot;%filename%&quot; SHA256&#39;</span><span class="o">)</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="s2">&quot;generated_hash=%%a&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="s2">&quot;%generated_hash%&quot;</span><span class="o">==</span><span class="s2">&quot;%provided_hash%&quot;</span><span class="w"> </span><span class="o">(</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Hashes<span class="w"> </span>match.<span class="w"> </span>The<span class="w"> </span>file<span class="w"> </span>is<span class="w"> </span>authentic.
+<span class="o">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="o">(</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>Hashes<span class="w"> </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>match.<span class="w"> </span>The<span class="w"> </span>file<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>corrupted<span class="w"> </span>or<span class="w"> </span>tampered<span class="w"> </span>with.
+<span class="o">)</span>
+
+endlocal
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Here is another way to check the data integrity using <code class="docutils literal notranslate"><span class="pre">certutil</span></code></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Copy the provided key to a text file like <code class="docutils literal notranslate"><span class="pre">getkey.txt</span></code></p></li>
+<li><p>Generate the key:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certutil<span class="w"> </span>-hashfile<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>sha256<span class="w"> </span>&gt;<span class="w"> </span>genkey.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Remove the first and the last line manually using <code class="docutils literal notranslate"><span class="pre">notepad</span></code> or <code class="docutils literal notranslate"><span class="pre">notepad++</span></code> or <code class="docutils literal notranslate"><span class="pre">nano</span></code> and save the file</p></li>
+<li><p>We can ask only for the hash key using regular expression with <code class="docutils literal notranslate"><span class="pre">findstr</span></code> command like this:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>certutil<span class="w"> </span>-hashfile<span class="w"> </span>&lt;filename&gt;<span class="w"> </span>sha256<span class="w"> </span><span class="p">|</span><span class="w"> </span>findstr<span class="w"> </span>/R<span class="w"> </span><span class="s2">&quot;^[0-9a-f]*</span>$<span class="s2">&quot;</span><span class="w"> </span>findstr<span class="w"> </span>/R<span class="w"> </span>/V<span class="w"> </span><span class="s2">&quot;^</span>$<span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>genkey.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>^: This symbol denotes the start of a line.</p></li>
+<li><p>[0-9a-f]*: This part of the expression is enclosed in square brackets and represents a character class. It matches any character that is a digit (0-9) or a lowercase letter (a-f). The * indicates that the preceding character class (the digit or letter) can occur zero or more times.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span></code>: This symbol denotes the end of a line.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">/V</span></code> flag with findstr is used to exclude lines that match the specified pattern. In this case, the second findstr command filters out lines that are completely empty.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">fc</span></code> command like this:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">fc</span><span class="w"> </span>genkey.txt<span class="w"> </span>getkey.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If I did this without the regular expression, The generated key has three lines, we are interested in the second line from this file.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">fc</span><span class="w"> </span>/21<span class="w"> </span>genkey.txt<span class="w"> </span>getkey.txt
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>A message saying no differences encountered if the files are identical.</p></li>
+</ol>
+<ul class="simple">
+<li><p>You can check any application online, or you may use my application to check the data integrity. However, it is up to you whether to do this or not, it depends on how much of emphasis you give to the security matter, and how much you trust the installer provider.</p></li>
+<li><p>You can use these techniques will all of the software you download from the Internet.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Installing anaconda (full version)</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w">  </span>
+<span class="c1"># check the data integrity</span>
+<span class="c1"># run the installer</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>2. Installing mamba (mini and full version):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Installing miniforge</strong>:</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w">  </span>
+<span class="c1"># check the data integrity</span>
+<span class="c1"># run the installer</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Installing mambaforge (full version)</strong></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w">  </span>
+<span class="c1"># check the data integrity</span>
+<span class="c1"># run the installer</span>
+</pre></div>
+</div>
+</section>
+<section id="anaconda-prompt">
+<h3>Anaconda Prompt<a class="headerlink" href="#anaconda-prompt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Anaconda comes with its own Command Line Interpreter <strong>Anaconda prompt</strong></p></li>
+<li><p>Anaconda also comes with a lot of tools already installed such as <code class="docutils literal notranslate"><span class="pre">jupyter</span></code></p></li>
+<li><p>Once Anaconda is successfully installed, open the “Anaconda Prompt.” This specialized command-line interface comes pre-configured with the Anaconda distribution and allows you to manage environments and packages with ease.</p></li>
+<li><p>Anaconda conveniently installs Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.</p></li>
+</ul>
+</section>
+<section id="key-features-of-anaconda-prompt">
+<h3>Key Features of Anaconda Prompt<a class="headerlink" href="#key-features-of-anaconda-prompt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Anaconda Prompt is a command-line interface that comes bundled with the Anaconda distribution, a popular platform for data science and scientific computing. Anaconda is widely used by professionals in fields such as data analysis, machine learning, and scientific research to manage and work with Python-based packages, libraries, and environments.</p></li>
+<li><p>Key features of Anaconda Prompt include:</p>
+<ul>
+<li><p>Environment Management: Anaconda allows users to create isolated Python environments, each with its own set of packages and dependencies. This is especially helpful when different projects require different versions of libraries or packages. The Anaconda Prompt provides commands to create, manage, and switch between these environments.</p></li>
+<li><p>Package Management: Anaconda simplifies the installation and management of Python packages and libraries. The Anaconda Prompt provides commands to install, update, and remove packages within an environment. Anaconda’s package manager also ensures compatibility and resolves dependencies.</p></li>
+<li><p>Conda Package Manager: Conda is a powerful package manager that ships with Anaconda. It extends beyond Python packages to include libraries written in other languages, system-level libraries, and more. The Anaconda Prompt uses Conda to manage packages and environments.</p></li>
+<li><p>Access to Anaconda Tools: The Anaconda Prompt gives users access to other tools included with the Anaconda distribution, such as Jupyter Notebook, JupyterLab, and Spyder, enhancing the data science workflow.</p></li>
+<li><p>Python Version Management: With Anaconda, you can easily install and switch between different versions of Python, enabling compatibility with various projects and libraries.</p></li>
+<li><p>Cross-Platform: Anaconda and Anaconda Prompt are available for multiple platforms, including Windows, macOS, and Linux, making it a versatile choice for data professionals working on different operating systems.</p></li>
+</ul>
+</li>
+</ul>
+<section id="conclusion">
+<h4>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Anaconda Prompt is especially useful for individuals who prefer using the command line to manage their data science projects, environments, and packages. Its integration with Conda and the Anaconda ecosystem makes it a convenient tool for efficiently managing Python-based development environments and packages tailored to specific projects.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-conda-manager">
+<h3>The <code class="docutils literal notranslate"><span class="pre">conda</span></code> Manager<a class="headerlink" href="#the-conda-manager" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">conda</span></code> is the anaconda packager manager (<code class="docutils literal notranslate"><span class="pre">mamba</span></code> is for mambaforge). This is similar to <code class="docutils literal notranslate"><span class="pre">pip</span></code>, however it takes several commands, and each command my accept several options. We will discuss few commands here to get you started:</p></li>
+<li><p><strong>The <code class="docutils literal notranslate"><span class="pre">conda</span></code> general syntax</strong>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span><span class="nb">command</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>where the <code class="docutils literal notranslate"><span class="pre">command</span></code> is the command that does a specific job, and options will alter the main setting of the called command.</p></li>
+<li><p><strong>Checking <code class="docutils literal notranslate"><span class="pre">conda</span></code> version</strong>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>--version
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Getting help</strong>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>--help
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Getting help of a command</strong>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span><span class="nb">command</span><span class="w"> </span>--help
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Installing new package with <code class="docutils literal notranslate"><span class="pre">install</span></code> command</strong>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>&lt;package-name&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>The conda channels</strong>:</p></li>
+<li><p><strong>What is conda channels</strong></p></li>
+</ul>
+<blockquote>
+<div><p><strong>Conda channels are the locations where packages are stored. They serve as the base for hosting and managing packages. Conda packages are downloaded from remote channels, which are URLs to directories containing conda packages.</strong> <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/channels.html?highlight=channel#what-is-a-conda-channel">source</a></p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>some-channel
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>for the list of commands available for <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager, you may visit the official <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/index.html">website</a></p></li>
+</ul>
+</section>
+</section>
+<section id="steps-to-install-irkernel-using-conda-on-windows-machines">
+<h2>Steps to Install <code class="docutils literal notranslate"><span class="pre">IRKernel</span></code> Using <code class="docutils literal notranslate"><span class="pre">Conda</span></code> on Windows Machines<a class="headerlink" href="#steps-to-install-irkernel-using-conda-on-windows-machines" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>In this section, we will do everything from within anaconda, starting from installing <code class="docutils literal notranslate"><span class="pre">R</span></code>, creating a new environment (which requires to install jupyter and jupyter lab and other tools). I also suppose that you want to use jupyter as your main editor, otherwise you need to install RStudio, which is available from anaconda as well <a class="reference external" href="https://saturncloud.io/blog/how-to-configure-rstudio-to-use-r-version-from-anaconda-a-guide/#:~:text=Once%20you've%20installed%20RStudio,the%20R%20version%20from%20Anaconda.&amp;amp;text=In%20the%20Anaconda%20Navigator%2C%20go,on%20'Launch'%20under%20RStudio">source</a></p></li>
+</ul>
+<section id="install-anaconda">
+<h3>Install Anaconda:<a class="headerlink" href="#install-anaconda" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>If you have not already installed anaconda, <a class="reference internal" href="#Installing-Distributions-Conda-and-Mamba"><span class="xref myst">go up</span></a> or <a class="reference internal" href="#Advanced-Installing-of-Distributions"><span class="xref myst">here</span></a> and follow the steps to install it. Anaconda provides a comprehensive package manager and environment manager to simplify the installation and management of various programming languages and packages.</p></li>
+</ul>
+</section>
+<section id="launch-anaconda-prompt">
+<h3>Launch Anaconda Prompt:<a class="headerlink" href="#launch-anaconda-prompt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You can launch <strong>Anaconda prompt</strong> by typing anaconda in the search bar then select it from there.</p></li>
+</ul>
+</section>
+<section id="create-a-new-conda-environment-optional-but-recommended">
+<h3>Create a New Conda Environment (Optional but Recommended):<a class="headerlink" href="#create-a-new-conda-environment-optional-but-recommended" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>While not mandatory, creating a separate Conda environment for your <code class="docutils literal notranslate"><span class="pre">RKernel</span></code> installation is a good practice. It ensures that your project’s dependencies are isolated from the system and other projects. Use the following command to create a new environment named <code class="docutils literal notranslate"><span class="pre">renv</span></code>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>renv
+</pre></div>
+</div>
+</section>
+<section id="activate-the-conda-environment">
+<h3>Activate the Conda Environment:<a class="headerlink" href="#activate-the-conda-environment" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Activate the environment you just created is an essential step otherwise you will be still in the base environment, <code class="docutils literal notranslate"><span class="pre">conda</span></code> will prompt a message telling the activate it anyway, you can do using the following command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>renv
+</pre></div>
+</div>
+</section>
+<section id="install-r">
+<h3>Install <code class="docutils literal notranslate"><span class="pre">R</span></code><a class="headerlink" href="#install-r" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Inside the activated environment, install R and the <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> package, which enables R to be used as a kernel within <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> Notebook:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>r<span class="w"> </span>r-base
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>R Essentials bundle</strong>:</p></li>
+<li><p>Rather than install each R language package individually, you can get the R Essentials bundle. It includes approximately <code class="docutils literal notranslate"><span class="pre">80</span></code> of the most popular scientific packages for the R programming language <a class="reference external" href="https://docs.anaconda.com/free/anaconda/reference/packages/r-language-pkg-docs/#r-essentials-bundle">source</a>.</p></li>
+<li><p>You can install the R Essentials bundle with this command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>r<span class="w"> </span>r-essentials
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Launch <code class="docutils literal notranslate"><span class="pre">R</span></code> from the command prompt:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>R
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>if you do not feel comfortable using the command line, you can use the Graphical user interface.</p></li>
+<li><p>You can open anaconda navigator and install <code class="docutils literal notranslate"><span class="pre">R</span></code> from there.</p></li>
+</ul>
+</section>
+</section>
+<section id="note">
+<h2>Note<a class="headerlink" href="#note" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>If you did not create a new environment, you do not need to install Jupyter notebook or Jupyter lab, because they come by default with anaconda.</p>
+</div></blockquote>
+</section>
+<section id="installing-irkernel-with-conda">
+<h2>Installing IRKernel with <code class="docutils literal notranslate"><span class="pre">conda</span></code><a class="headerlink" href="#installing-irkernel-with-conda" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>r<span class="w"> </span>r-irkernel
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span></code>: Is the package manager for anaconda</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install</span></code>: The command to install a package</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: This flag specifies the <code class="docutils literal notranslate"><span class="pre">CHANNEL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code>: Is the name of the channel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r-irkernel</span></code>: The name of the package we wish to install</p></li>
+<li><p>If you want to learn about the <code class="docutils literal notranslate"><span class="pre">conda</span></code> packager manager, you check help from the command prompt, which is easier and faster by running this command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">--help</span></code> to see the full documentation, or you can pipe the output to the <code class="docutils literal notranslate"><span class="pre">more</span></code> command to page out the help like this <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">--help</span> <span class="pre">|</span> <span class="pre">more</span></code></p></li>
+<li><p>If you are not comfortable reading the help from the command line, you can visit conda documentation website <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/commands/index.html">here</a></p></li>
+<li><p>If it does not launch it means that <code class="docutils literal notranslate"><span class="pre">R</span></code> is not in the path, we can add it to the path using the graphical user interface, or from the command prompt.</p></li>
+</ul>
+<section id="once-inside-the-r-console-install-irkernel">
+<h3>Once inside the <code class="docutils literal notranslate"><span class="pre">R</span></code> console, install <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code>:<a class="headerlink" href="#once-inside-the-r-console-install-irkernel" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>install.packages<span class="o">(</span><span class="s1">&#39;IRkernel&#39;</span><span class="o">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="registering-the-kernel-in-the-current-r-installation">
+<h2>Registering the kernel in the current R installation<a class="headerlink" href="#registering-the-kernel-in-the-current-r-installation" title="Link to this heading">#</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">IRkernel</span><span class="o">::</span><span class="nf">installspec</span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">displayname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;R 4.2&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># To install that system wide. </span>
+</pre></div>
+</div>
+<section id="launch-jupyter-notebook">
+<h3>Launch Jupyter Notebook:<a class="headerlink" href="#launch-jupyter-notebook" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>With <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> installed, you’re now ready to launch Jupyter Notebook.</p></li>
+<li><p>Create a new folder (directory) for your project, change to this new directory and then launch the Jupyter lab.</p></li>
+<li><p>Activate the <code class="docutils literal notranslate"><span class="pre">renv</span></code> if you did create one. Now you can use the following command to start Jupyter Notebook (lab):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
+</section>
+<section id="create-a-new-notebook-with-r-kernel">
+<h3>Create a New Notebook with R Kernel:<a class="headerlink" href="#create-a-new-notebook-with-r-kernel" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In the Jupyter Notebook interface that opens in your web browser, navigate to the desired directory and create a new notebook. You will now find the option to select the R kernel when creating a new notebook.</p></li>
+</ul>
+</section>
+<section id="start-using-r-in-jupyter-notebook">
+<h3>Start Using R in Jupyter Notebook:<a class="headerlink" href="#start-using-r-in-jupyter-notebook" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Your R-powered notebook is now ready. You can start writing and executing R code cells just like you would with Python.</p></li>
+<li><p>By following these steps, you’ll have successfully set up RKernel using Conda on your Windows system. This setup empowers you to seamlessly switch between R and Python for data analysis, utilizing the strengths of both languages within a single Jupyter Notebook environment.</p></li>
+</ul>
+</section>
+<section id="installing-rstudio-from-anaconda">
+<h3>Installing RStudio From Anaconda<a class="headerlink" href="#installing-rstudio-from-anaconda" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>I do everything the command line interface, because it is kind of fast, and efficient, however, if you do not feel comfortable using the command line, you can use the Graphical user interface.</p></li>
+<li><p>You can open anaconda navigator and install <code class="docutils literal notranslate"><span class="pre">Rstudio</span></code> from there.</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Install RStudio in Anaconda</strong></p></li>
+<li><p>If you followed the steps above to install R, and you prefer to use RStudio IDE, you can install it as well within Anaconda. This ensures that RStudio will use the R version installed in Anaconda.</p></li>
+<li><p>To install RStudio from the anaconda prompt, you can run the following command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install RStudio in Anaconda</span>
+conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>r<span class="w"> </span>rstudio
+</pre></div>
+</div>
+<section id="launch-rstudio-from-anaconda">
+<h4>Launch RStudio from Anaconda<a class="headerlink" href="#launch-rstudio-from-anaconda" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Once you’ve installed RStudio in Anaconda, you can launch it directly from the Anaconda Navigator. This will ensure that RStudio uses the R version from Anaconda.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch RStudio from Anaconda</span>
+<span class="n">anaconda</span><span class="o">-</span><span class="n">navigator</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the Anaconda Navigator, go to the ‘Home’ tab and click on ‘Launch’ under RStudio.</p></li>
+</ul>
+</section>
+</section>
+<section id="verify-r-version-in-rstudio">
+<h3>Verify R Version in RStudio<a class="headerlink" href="#verify-r-version-in-rstudio" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Finally, verify that RStudio is using the R version from Anaconda. In RStudio, you can check the R version by typing version in the console.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check R version in RStudio</span>
+<span class="n">version</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The output should indicate that RStudio is using the R version installed in Anaconda.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Conclusion<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>By following these steps, you can configure RStudio to use the R version from Anaconda, allowing you to leverage the power of both tools in your data science projects. Remember, the key is to install and launch RStudio from within Anaconda. This ensures that RStudio uses the R version installed in Anaconda, giving you access to the packages and environments that Anaconda offers.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./chap_00"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presentation">Presentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#it-is-recommended-to-use-conda">It is recommended to use Conda</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-distributions-conda-and-mamba">Installing Distributions <code class="docutils literal notranslate"><span class="pre">Conda</span></code> and <code class="docutils literal notranslate"><span class="pre">Mamba</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-anaconda">Installing Anaconda</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-installing-of-distributions">Advanced Installing of Distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-prompt">Anaconda Prompt</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-anaconda-prompt">Key Features of Anaconda Prompt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-conda-manager">The <code class="docutils literal notranslate"><span class="pre">conda</span></code> Manager</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-install-irkernel-using-conda-on-windows-machines">Steps to Install <code class="docutils literal notranslate"><span class="pre">IRKernel</span></code> Using <code class="docutils literal notranslate"><span class="pre">Conda</span></code> on Windows Machines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-anaconda">Install Anaconda:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-anaconda-prompt">Launch Anaconda Prompt:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-conda-environment-optional-but-recommended">Create a New Conda Environment (Optional but Recommended):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activate-the-conda-environment">Activate the Conda Environment:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-r">Install <code class="docutils literal notranslate"><span class="pre">R</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#note">Note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-irkernel-with-conda">Installing IRKernel with <code class="docutils literal notranslate"><span class="pre">conda</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#once-inside-the-r-console-install-irkernel">Once inside the <code class="docutils literal notranslate"><span class="pre">R</span></code> console, install <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code>:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registering-the-kernel-in-the-current-r-installation">Registering the kernel in the current R installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-jupyter-notebook">Launch Jupyter Notebook:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-new-notebook-with-r-kernel">Create a New Notebook with R Kernel:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-using-r-in-jupyter-notebook">Start Using R in Jupyter Notebook:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-rstudio-from-anaconda">Installing RStudio From Anaconda</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-rstudio-from-anaconda">Launch RStudio from Anaconda</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-r-version-in-rstudio">Verify R Version in RStudio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Saad Laouadi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
